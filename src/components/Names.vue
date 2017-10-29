@@ -1,5 +1,8 @@
 <template>
   <div class="table-responsive">
+    <form>
+      <p>input: <input type="text" v-model="searchWord" @keyup="update_names()"></p>
+    </form>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -29,7 +32,18 @@ export default {
   mixins: [ajaxMix],
   data () {
     return {
-      names: []
+      names: [],
+      searchWord: ''
+    }
+  },
+  methods: {
+    update_names () {
+      console.log('update..')
+      let options = ''
+      if (this.searchWord !== '') {
+        options = '?id=' + this.searchWord
+      }
+      this.get_ajax('names' + options, 'names')
     }
   },
   created () {
