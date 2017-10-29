@@ -22,13 +22,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-
-const URL_BASE = 'http://infinite-river-99979.herokuapp.com/api/'
+import ajaxMix from '@/ajaxMix'
 
 export default {
   name: 'Names',
+  mixins: [ajaxMix],
   data () {
     return {
       names: []
@@ -36,15 +34,6 @@ export default {
   },
   created () {
     this.get_ajax('names', 'names')
-  },
-  methods: {
-    get_ajax (url, name) {
-      return axios.get(URL_BASE + url)
-      .then((res) => {
-        console.log(res.data)
-        Vue.set(this, name, res.data)
-      })
-    }
   }
 }
 </script>
