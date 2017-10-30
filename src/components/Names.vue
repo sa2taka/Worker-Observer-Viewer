@@ -8,15 +8,19 @@
         <tr>
           <th>#</th>
           <th>accounts_id</th>
+          <th>user_name</th>
           <th>display_name</th>
+          <th>nickname</th>
           <th>created_at</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in names">
           <th>{{ item.id }}</th>
-          <td>{{ item.accounts_id  }}</td>
+          <td>{{ item.account_id  }}</td>
+          <td>{{ item.username }}</td>
           <td>{{ item.display_name }}</td>
+          <td>{{ item.nickname }}</td>
           <td>{{ item.created_at }}</td>
         </tr>
       </tbody>
