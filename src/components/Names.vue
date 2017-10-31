@@ -2,29 +2,14 @@
   <div class="table-responsive">
     <form>
       <p>input: <input type="text" v-model="searchWord" @keyup="update_names()"></p>
+      <b-form-radio-group v-model="selected"
+                          :options="searchOptions"
+                          name="radiosMd">
+
+      </b-form-radio-group>
     </form>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>accounts_id</th>
-          <th>user_name</th>
-          <th>display_name</th>
-          <th>nickname</th>
-          <th>created_at</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in names">
-          <th>{{ item.id }}</th>
-          <td>{{ item.account_id  }}</td>
-          <td>{{ item.username }}</td>
-          <td>{{ item.display_name }}</td>
-          <td>{{ item.nickname }}</td>
-          <td>{{ item.created_at }}</td>
-        </tr>
-      </tbody>
-    </table>
+
+    <b-table striped hover :items="names" :fields="fields"></b-table>
   </div>
 </template>
 
@@ -37,7 +22,39 @@ export default {
   data () {
     return {
       names: [],
-      searchWord: ''
+      fields: [
+        {
+          key: 'id',
+          label: '#',
+          sortable: true
+        },
+        {
+          key: 'account_id',
+          sortable: true
+        },
+        {
+          key: 'username',
+          sortable: false
+        },
+        {
+          key: 'display_name',
+          sortable: false
+        },
+        {
+          key: 'nickname',
+          sortable: false
+        },
+        {
+          key: 'created_at',
+          sortable: true
+        }
+      ],
+      searchWord: '',
+      selected: 'username',
+      searchOptions: [
+        { text: 'usernameで検索', value: 'username' },
+        { text: 'idで検索', value: 'id' }
+      ]
     }
   },
   methods: {
@@ -45,7 +62,7 @@ export default {
       console.log('update..')
       let options = ''
       if (this.searchWord !== '') {
-        options = '?id=' + this.searchWord
+        options = '?' + this.selected + '=' + this.searchWord
       }
       this.get_ajax('names' + options, 'names')
     }
