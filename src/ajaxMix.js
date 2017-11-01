@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-const URL_BASE = 'http://localhost/api/'
+const URL_BASE = 'http://infinite-river-99979.herokuapp.com/api/'
 
 export default {
   methods: {
