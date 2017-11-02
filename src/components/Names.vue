@@ -1,25 +1,15 @@
 <template>
-  <div>
-    <form>
-      <p>input: <input type="text" v-model="searchWord" @keyup="update_names()"></p>
-      <b-form-radio-group v-model="selected"
-                          :options="searchOptions"
-                          name="radiosMd">
-
-      </b-form-radio-group>
-    </form>
-
-    <!-- paginationの設定 -->
-    <div class="row my-1">
-      <div class="col-sm-8">
-        <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" />
-      </div>
-      <div class="col-md-4 text-md-right">
+  <b-container class="names-viewer">
+    <b-row align-h ="between">
+      <b-col cols="4">
         <b-form-fieldset horizontal label="1ページあたりの表示数" :label-cols="6">
           <b-form-select :options="pageOptions" v-model="perPage" />
         </b-form-fieldset>
-      </div>
-    </div>
+      </b-col>
+    </b-row>
+
+    <!-- paginationの設定 -->
+    <b-pagination align="center" :limit="10" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" />
 
     <b-table striped hover show-empty
              :items="names"
@@ -27,7 +17,7 @@
              :current-page="currentPage"
              :per-page="perPage">
     </b-table>
-  </div>
+  </b-container>
 </template>
 
 <script>
