@@ -2,6 +2,11 @@
   <b-container class="names-viewer">
     <b-row align-h ="between">
       <b-col cols="4">
+        <b-form-fieldset horizontal label="Filter:" :label-cols="3">
+          <b-form-input v-model="filter" placeholder="検索文字列" />
+        </b-form-fieldset>
+      </b-col>
+      <b-col cols="4">
         <b-form-fieldset horizontal label="1ページあたりの表示数" :label-cols="6">
           <b-form-select :options="pageOptions" v-model="perPage" />
         </b-form-fieldset>
@@ -15,7 +20,9 @@
              :items="names"
              :fields="fields"
              :current-page="currentPage"
-             :per-page="perPage">
+             :per-page="perPage"
+             :filter="filter"
+             @filterd="onFilterd">
     </b-table>
   </b-container>
 </template>
@@ -65,6 +72,7 @@ export default {
       currentPage: 1,
       perPage: 10,
       totalRows: 0,
+      filter: null,
       pageOptions: [ { text: 10, value: 10 }, { text: 15, value: 15 }, { text: 20, value: 20 } ],
       modalDetails: { index: '', data: '' }
     }
@@ -84,6 +92,11 @@ export default {
     this.get_ajax('names', 'names', this, function (klass) {
       klass.totalRows = klass.names.length
     })
+  },
+  onFiltered (filteredItems) {
+    // Trigger pagination to update the number of buttons/pages due to filtering
+    this.totalRows = filteredItems.length
+    this.currentPage = 1
   }
 }
 </script>
