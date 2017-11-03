@@ -1,8 +1,8 @@
 <template>
-  <b-container class="names-viewer">
+  <div>
     <b-row align-h ="between">
       <b-col cols="4">
-        <b-form-fieldset horizontal label="Filter:" :label-cols="3">
+        <b-form-fieldset horizontal label="Filter" :label-cols="3">
           <b-form-input v-model="filter" placeholder="検索文字列" />
         </b-form-fieldset>
       </b-col>
@@ -17,14 +17,15 @@
     <b-pagination align="center" :limit="10" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" />
 
     <b-table striped hover show-empty
-             :items="names"
-             :fields="fields"
-             :current-page="currentPage"
-             :per-page="perPage"
-             :filter="filter"
-             @filterd="onFilterd">
+           :items="names"
+           :fields="fields"
+           :current-page="currentPage"
+           :per-page="perPage"
+           :filter="filter"
+           @filtered="onFiltered"
+           >
     </b-table>
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -36,33 +37,23 @@ export default {
   data () {
     return {
       names: [],
-      fields: [
-        {
-          key: 'id',
-          label: '#',
+      fields: {
+        account_id: {
           sortable: true
         },
-        {
-          key: 'account_id',
-          sortable: true
-        },
-        {
-          key: 'username',
+        username: {
           sortable: false
         },
-        {
-          key: 'display_name',
+        display_name: {
           sortable: false
         },
-        {
-          key: 'nickname',
+        nickname: {
           sortable: false
         },
-        {
-          key: 'created_at',
+        created_at: {
           sortable: true
         }
-      ],
+      },
       searchWord: '',
       selected: 'username',
       searchOptions: [
@@ -86,17 +77,16 @@ export default {
       this.get_ajax('names' + options, 'names', this, function (klass) {
         klass.totalRows = klass.names.length
       })
+    },
+    onFiltered (filteredItems) {
+      this.totalRows = filteredItems.length
+      this.currentPage = 1
     }
   },
   created () {
     this.get_ajax('names', 'names', this, function (klass) {
       klass.totalRows = klass.names.length
     })
-  },
-  onFiltered (filteredItems) {
-    // Trigger pagination to update the number of buttons/pages due to filtering
-    this.totalRows = filteredItems.length
-    this.currentPage = 1
   }
 }
 </script>
@@ -119,5 +109,9 @@ li {
 
 a {
   color: #42b983;
+}
+
+.hoge {
+    color: red;
 }
 </style>
