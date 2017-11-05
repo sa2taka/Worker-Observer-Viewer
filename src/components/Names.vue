@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-container>
     <b-row align-h ="between">
       <b-col cols="4">
         <b-form-fieldset horizontal label="Filter" :label-cols="3">
@@ -25,7 +25,7 @@
            @filtered="onFiltered"
            >
     </b-table>
-  </div>
+  </b-container>
 </template>
 
 <script>
