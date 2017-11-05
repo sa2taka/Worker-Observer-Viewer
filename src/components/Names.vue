@@ -23,6 +23,7 @@
            :per-page="perPage"
            :filter="filter"
            @filtered="onFiltered"
+           @row-dblclicked="onNameDblClicked"
            >
     </b-table>
   </b-container>
@@ -81,6 +82,13 @@ export default {
     onFiltered (filteredItems) {
       this.totalRows = filteredItems.length
       this.currentPage = 1
+    },
+    onNameDblClicked (item) {
+      if (this.filter === item.username) {
+        this.filter = ''
+      } else {
+        this.filter = item.username
+      }
     }
   },
   created () {
