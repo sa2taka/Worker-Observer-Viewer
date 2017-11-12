@@ -24,7 +24,29 @@ export default {
   mounted () {
     this.renderChart()
     this.get_ajax('toot_counts?username=' + this.username, 'counts', this, function (klass) {
-      klass.renderChart({ labels: klass.labels, datasets: klass.datasets }, {})
+      let options = {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            gridLines: {
+              display: true
+            }
+          }],
+          xAxes: [ {
+            gridLines: {
+              display: false
+            }
+          }]
+        },
+        legend: {
+          display: true
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      }
+      klass.renderChart({ labels: klass.labels, datasets: klass.datasets }, options)
     })
   },
   computed: {

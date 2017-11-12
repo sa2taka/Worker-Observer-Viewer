@@ -1,7 +1,15 @@
 <template>
   <div>
     <h4> {{ username }} </h4>
-    <toot-chart :username=username></toot-chart>
+    <b-card nobody>
+      <b-tabs ref="tabs" card>
+        <b-tab title="Names">
+        </b-tab>
+        <b-tab title="Toot Chart" active>
+          <toot-chart :username="username"></toot-chart>
+        </b-tab>
+      </b-tabs>
+    </b-card>
   </div>
 </template>
 
