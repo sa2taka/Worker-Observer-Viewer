@@ -1,5 +1,7 @@
 # worker_observer_viewer
 
+Pages: https://sa2taka.github.io/Worker-Observer-Viewer/
+
 > A Vue.js project
 
 ## Build Setup
