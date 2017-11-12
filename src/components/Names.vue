@@ -107,7 +107,7 @@ export default {
     },
     details (item, index, button) {
       // TODO 実際の使用時には#を消す
-      location.href = '/#/account/' + item.username
+      location.href = '/account/' + item.username
     }
   },
   created () {
