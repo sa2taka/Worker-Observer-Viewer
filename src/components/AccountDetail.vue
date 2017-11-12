@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <b-container>
+    <b-button href="/" variant="primary" size="lg">名前一覧画面に戻る</b-button>
     <h4> {{ username }} </h4>
     <b-card nobody>
       <b-tabs ref="tabs" card>
@@ -10,7 +11,7 @@
         </b-tab>
       </b-tabs>
     </b-card>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -36,25 +37,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-
-.hoge {
-  color: red;
-}
 </style>
