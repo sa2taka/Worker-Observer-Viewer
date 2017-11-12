@@ -25,6 +25,9 @@
            @filtered="onFiltered"
            @row-dblclicked="onNameDblClicked"
            >
+       <template slot="details" scope="row">
+         <b-btn size="sm" @click.stop="details(row.item, row.index, $event.target)">Details</b-btn>
+       </template>
     </b-table>
   </b-container>
 </template>
@@ -45,6 +48,7 @@ export default {
         username: {
           sortable: false
         },
+        details: {},
         display_name: {
           sortable: false
         },
@@ -65,8 +69,7 @@ export default {
       perPage: 10,
       totalRows: 0,
       filter: null,
-      pageOptions: [ { text: 10, value: 10 }, { text: 15, value: 15 }, { text: 20, value: 20 } ],
-      modalDetails: { index: '', data: '' }
+      pageOptions: [ { text: 10, value: 10 }, { text: 15, value: 15 }, { text: 20, value: 20 } ]
     }
   },
   /// TODO displayが空のときはusernameを入れる用にする
@@ -90,6 +93,10 @@ export default {
       } else {
         this.filter = item.username
       }
+    },
+    details (item, index, button) {
+      // TODO 実際の使用時には#を消す
+      location.href = '/#/account/' + item.username
     }
   },
   created () {
