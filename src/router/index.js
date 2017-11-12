@@ -19,7 +19,7 @@ export default new Router({
       component: Names
     },
     {
-      path: '/account',
+      path: '/account/:username',
       name: 'AccountDetail',
       component: AccountDetail
     }

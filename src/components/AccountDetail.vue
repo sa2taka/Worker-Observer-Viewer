@@ -1,6 +1,6 @@
 <template>
   <div>
-    hogehoge
+    <h4> {{ username }} </h4>
     <toot-chart></toot-chart>
   </div>
 </template>
@@ -10,8 +10,18 @@ import TootChart from '@/components/TootChart'
 
 export default {
   names: 'AccountDetail',
+  data () {
+    return {
+      username: this.$route.params.username
+    }
+  },
   components: {
     TootChart
+  },
+  watch: {
+    '$route' (to, from) {
+      this.username = this.$route.params.username
+    }
   }
 }
 </script>

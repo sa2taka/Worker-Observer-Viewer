@@ -69,6 +69,7 @@ export default {
       modalDetails: { index: '', data: '' }
     }
   },
+  /// TODO displayが空のときはusernameを入れる用にする
   methods: {
     update_names () {
       let options = ''
