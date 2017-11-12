@@ -106,8 +106,8 @@ export default {
       }
     },
     details (item, index, button) {
-      // TODO 実際の使用時には#を消す
-      location.href = '/account/' + item.username
+      // TODO 実際の使用時と違う
+      location.href = '/Worker-Observer-Viewer/#/account/' + item.username
     }
   },
   created () {

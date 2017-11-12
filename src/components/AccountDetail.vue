@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-button href="/" variant="primary" size="lg">名前一覧画面に戻る</b-button>
+    <b-button href="/Worker-Observer-Viewer/" variant="primary" size="lg">名前一覧画面に戻る</b-button>
     <h4> {{ username }} </h4>
     <b-card nobody>
       <b-tabs ref="tabs" card>
