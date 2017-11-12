@@ -17,7 +17,7 @@
     <b-pagination align="center" :limit="10" :total-rows="totalRows" :per-page="perPage" v-model="currentPage" />
 
     <b-table striped hover show-empty
-           :items="names"
+           :items="formatedNames"
            :fields="fields"
            :current-page="currentPage"
            :per-page="perPage"
@@ -72,7 +72,18 @@ export default {
       pageOptions: [ { text: 10, value: 10 }, { text: 15, value: 15 }, { text: 20, value: 20 } ]
     }
   },
-  /// TODO displayが空のときはusernameを入れる用にする
+  computed: {
+    formatedNames: function () {
+      let formated = []
+      this.names.forEach(function (val, index, ar) {
+        formated.push(val)
+        if (val.display_name === '') {
+          formated[index].display_name = ar[index].username
+        }
+      })
+      return formated
+    }
+  },
   methods: {
     update_names () {
       let options = ''
