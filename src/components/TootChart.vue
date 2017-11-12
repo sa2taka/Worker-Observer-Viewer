@@ -1,20 +1,48 @@
 <script>
+export default {
+}
+</script>
+
+<style lang="css">
+</style>
+
+
+<script>
 import { Line } from 'vue-chartjs'
+import ajaxMix from '@/ajaxMix'
 
 export default {
   name: 'TootChart',
   extends: Line,
+  mixins: [ajaxMix],
+  props: ['username'],
+  data () {
+    return {
+      counts: []
+    }
+  },
   mounted () {
-    this.renderChart({
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          label: 'Data One',
-          backgroundColor: '#f87979',
-          data: [40, 39, 10, 40, 39, 80, 40]
-        }
-      ]
-    }, {responsive: true, maintainAspectRatio: false})
+    this.renderChart()
+    this.get_ajax('toot_counts?username=' + this.username, 'counts', this, function (klass) {
+      klass.renderChart({ labels: klass.labels, datasets: klass.datasets }, {})
+    })
+  },
+  computed: {
+    datasets: function () {
+      let label = this.username + "'s toots count"
+      const data = []
+      for (let i in this.counts) {
+        data.push(this.counts[i].y)
+      }
+      return [ { label: label, data: data } ]
+    },
+    labels: function () {
+      let retVal = []
+      for (let i in this.counts) {
+        retVal.push(this.counts[i].x)
+      }
+      return retVal
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4> {{ username }} </h4>
-    <toot-chart></toot-chart>
+    <toot-chart :username=username></toot-chart>
   </div>
 </template>
 
