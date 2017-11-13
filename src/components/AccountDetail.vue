@@ -1,12 +1,14 @@
 <template>
   <b-container>
     <b-button href="/" variant="primary" size="lg">名前一覧画面に戻る</b-button>
-    <h4> {{ username }} </h4>
+
     <b-card nobody>
+      <h2> @{{ username }} </h2>
       <b-tabs ref="tabs" card>
-        <b-tab title="Names">
+        <b-tab title="Names"  active>
+          <names-in-account :username="username"></names-in-account>
         </b-tab>
-        <b-tab title="Toot Chart" active>
+        <b-tab title="Toot Chart">
           <toot-chart :username="username"></toot-chart>
         </b-tab>
       </b-tabs>
@@ -16,6 +18,7 @@
 
 <script>
 import TootChart from '@/components/TootChart'
+import NamesInAccount from '@/components/NamesInAccount'
 
 export default {
   names: 'AccountDetail',
@@ -25,7 +28,8 @@ export default {
     }
   },
   components: {
-    TootChart
+    TootChart,
+    NamesInAccount
   },
   watch: {
     '$route' (to, from) {
