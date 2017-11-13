@@ -77,7 +77,7 @@ export default {
       let formated = []
       this.names.forEach(function (val, index, ar) {
         formated.push(val)
-        if (val.display_name === '') {
+        if (val.display_name === '' || val.display_name === null) {
           formated[index].display_name = ar[index].username
         }
       })
