@@ -15,7 +15,9 @@ export default {
   name: 'TootChart',
   extends: Line,
   mixins: [ajaxMix],
-  props: ['username'],
+  props: {
+    username: {required: true}
+  },
   data () {
     return {
       counts: []
