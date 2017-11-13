@@ -59,12 +59,6 @@ export default {
           sortable: true
         }
       },
-      searchWord: '',
-      selected: 'username',
-      searchOptions: [
-        { text: 'usernameで検索', value: 'username' },
-        { text: 'idで検索', value: 'id' }
-      ],
       currentPage: 1,
       perPage: 10,
       totalRows: 0,
@@ -85,15 +79,6 @@ export default {
     }
   },
   methods: {
-    update_names () {
-      let options = ''
-      if (this.searchWord !== '') {
-        options = '?' + this.selected + '=' + this.searchWord
-      }
-      this.get_ajax('names' + options, 'names', this, function (klass) {
-        klass.totalRows = klass.names.length
-      })
-    },
     onFiltered (filteredItems) {
       this.totalRows = filteredItems.length
       this.currentPage = 1
