@@ -23,7 +23,7 @@
            :per-page="perPage"
            :filter="filter"
            @filtered="onFiltered"
-           @row-dblclicked="onNameDblClicked"
+           @row-clicked="onNameClicked"
            >
        <template slot="details" scope="row">
          <b-btn size="sm" @click.stop="details(row.item, row.index, $event.target)">Details</b-btn>
@@ -98,7 +98,7 @@ export default {
       this.totalRows = filteredItems.length
       this.currentPage = 1
     },
-    onNameDblClicked (item) {
+    onNameClicked (item) {
       if (this.filter === item.username) {
         this.filter = ''
       } else {
