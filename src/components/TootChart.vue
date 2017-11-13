@@ -44,7 +44,7 @@ export default {
           display: true
         },
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: true
       }
       klass.renderChart({ labels: klass.labels, datasets: klass.datasets }, options)
     })
