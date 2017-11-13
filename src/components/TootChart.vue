@@ -15,7 +15,9 @@ export default {
   name: 'TootChart',
   extends: Line,
   mixins: [ajaxMix],
-  props: ['username'],
+  props: {
+    username: {required: true}
+  },
   data () {
     return {
       counts: []
@@ -44,7 +46,7 @@ export default {
           display: true
         },
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: true
       }
       klass.renderChart({ labels: klass.labels, datasets: klass.datasets }, options)
     })
@@ -56,14 +58,14 @@ export default {
       for (let i in this.counts) {
         data.push(this.counts[i].y)
       }
-      return [ { label: label, data: data } ]
+      return [ { label: label, data: data.reverse() } ]
     },
     labels: function () {
       let retVal = []
       for (let i in this.counts) {
         retVal.push(this.counts[i].x)
       }
-      return retVal
+      return retVal.reverse()
     }
   }
 }
