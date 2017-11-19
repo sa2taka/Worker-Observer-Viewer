@@ -92,7 +92,7 @@ export default {
       }
     },
     details (item, index, button) {
-      // TODO 実際の使用時と違う
+      // 実際の使用時と違う
       location.href = '/Worker-Observer-Viewer/#/account/' + item.username
     }
   },
