@@ -70,6 +70,7 @@ export default {
     formatedNames: function () {
       let formated = []
       this.names.forEach(function (val, index, ar) {
+        val['created_at'] = val['created_at'].replace(/(.*)T(.*)\..*/, '$1 $2')
         formated.push(val)
         if (val.display_name === '' || val.display_name === null) {
           formated[index].display_name = ar[index].username
